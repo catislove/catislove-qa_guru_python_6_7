@@ -5,7 +5,7 @@ import zipfile
 
 def test_archive_files():
     resource_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'resources')
-    archive_name = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'tmp')
+    archive_name = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'tmp.zip')
     with zipfile.ZipFile(os.path.join("tmp", archive_name), "w") as archive:
         for file_name in os.listdir(resource_folder):
             file_path = os.path.join(resource_folder, file_name)
@@ -16,5 +16,5 @@ def test_archive_files():
         assert "file_example_XLSX_50.xlsx" in archive.namelist()
         assert "hello.zip" in archive.namelist()
         assert "username.csv" in archive.namelist()
-    #os.remove(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'tmp'))
+    #os.remove(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'tmp.zip'))
 
