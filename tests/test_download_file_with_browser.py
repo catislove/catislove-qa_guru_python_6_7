@@ -12,6 +12,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 def test_download_file_with_browser():
     download_dir_name = os.path.join(os.path.dirname((os.path.abspath(__file__))), 'tmp')
     options = webdriver.ChromeOptions()
+    options.add_argument('ignore-certificate-errors')
     prefs = {
         "download.default_directory": download_dir_name,
         "download.prompt_for_download": False
@@ -26,3 +27,4 @@ def test_download_file_with_browser():
     browser.element('[data-open-app="link"]').click()
     time.sleep(5)
     assert os.path.exists(os.path.join(download_dir_name, 'pytest-main.zip'))
+    os.remove(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'tmp'))
